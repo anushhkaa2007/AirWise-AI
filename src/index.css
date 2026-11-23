@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, ui-serif, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-evergreen: #102B22;
+  --color-forest: #1B4938;
+  --color-sage: #A8BBA6;
+  --color-ivory: #F7F5EF;
+  --color-cream: #EEECE3;
+  --color-charcoal: #252D29;
+  --color-lime: #C4DC91;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+  }
+}
+
+@keyframes airwise-flow {
+  0% {
+    stroke-dashoffset: 180;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes airwise-particle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(8px, -10px, 0);
+    opacity: 0.9;
+  }
+}
+
+@keyframes airwise-gradient-shift {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-12px, 8px, 0) scale(1.04);
+  }
+}
+
+@keyframes airwise-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes airwise-page-in {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-air-flow {
+  stroke-dasharray: 12 8;
+  animation: airwise-flow 9s linear infinite;
+}
+
+.animate-air-flow-slow {
+  stroke-dasharray: 18 12;
+  animation: airwise-flow 14s linear infinite;
+}
+
+.animate-particle-drift {
+  animation: airwise-particle 6.5s ease-in-out infinite;
+}
+
+.animate-particle-drift-alt {
+  animation: airwise-particle 8.5s ease-in-out infinite reverse;
+}
+
+.animate-ambient-glow {
+  animation: airwise-gradient-shift 12s ease-in-out infinite;
+}
+
+.animate-gauge-sweep {
+  transform-origin: 120px 120px;
+  animation: airwise-sweep 16s linear infinite;
+}
+
+.animate-page-enter {
+  animation: airwise-page-in 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-air-flow,
+  .animate-air-flow-slow,
+  .animate-particle-drift,
+  .animate-particle-drift-alt,
+  .animate-ambient-glow,
+  .animate-gauge-sweep,
+  .animate-page-enter {
+    animation: none !important;
+  }
+
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
